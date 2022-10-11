@@ -26,6 +26,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('OnFinance')),
+      body: Container(
+        child: const Center(
+          child: Text('Hello World'),
+        ),
+      ),
     );
   }
 }
