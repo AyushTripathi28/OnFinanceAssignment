@@ -3,6 +3,7 @@ import 'package:onfinance/screens/explore_page.dart';
 import 'package:onfinance/screens/home_page.dart';
 import 'package:onfinance/screens/alerts_page.dart';
 import 'package:onfinance/screens/portfolio_page.dart';
+import 'package:onfinance/screens/profile_page.dart';
 import 'package:onfinance/utils/constants.dart';
 
 import '../gen/assets.gen.dart';
@@ -21,6 +22,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     ExplorePage(),
     AlertsPage(),
     PortfolioPage(),
+    ProfilePage()
   ];
 
   @override
@@ -36,7 +38,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       // backgroundColor: white,
       body: _widgetOptions.elementAt(_index),
       bottomNavigationBar: SizedBox(
-        height: 70,
+        // height: 70,
         //---
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -46,9 +48,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
               _index = index;
             });
           },
-          backgroundColor: moreDarkBlue,
-          selectedItemColor: purple,
-          unselectedItemColor: greyLight,
+          backgroundColor: darkBlueColor,
+          selectedItemColor: purpleColor,
+          unselectedItemColor: lightGreyColor,
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 12,
@@ -121,6 +123,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ],
         ),
       ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 70.0),
+        child: FloatingActionButton(
+          mini: true,
+          onPressed: () {},
+          backgroundColor: purpleColor,
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                _index = 4;
+              });
+            },
+            child: Image.asset(
+              Assets.images.person.path,
+              fit: BoxFit.fill,
+              // height: 30,
+            ),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
     );
   }
 }

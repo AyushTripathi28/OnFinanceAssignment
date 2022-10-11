@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     return const Scaffold(
       body: Center(
           child: Text(
-        'Explore Page',
+        'Home Page',
         style: TextStyle(
           color: Colors.white,
         ),

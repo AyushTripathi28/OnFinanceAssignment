@@ -8,7 +8,7 @@ class AlertsPage extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          'Notification Page',
+          'Alerts Page',
           style: TextStyle(
             color: Colors.white,
           ),
