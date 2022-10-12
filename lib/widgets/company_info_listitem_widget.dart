@@ -14,31 +14,33 @@ class CompanyInfoListItemWidget extends StatelessWidget {
   final Widget valueWidget;
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+      padding: EdgeInsets.symmetric(
+          vertical: size.height * 0.006, horizontal: size.height * 0.013),
       // margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
           color: blueColor, borderRadius: BorderRadius.circular(10)),
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: EdgeInsets.all(size.height * 0.012),
             decoration: BoxDecoration(
                 color: lightDarkBlue, borderRadius: BorderRadius.circular(4)),
             child: Image(
-              height: 17,
-              width: 17,
+              height: size.height * 0.021,
+              width: size.height * 0.021,
               image: AssetImage(icon),
             ),
           ),
-          const SizedBox(
-            width: 15,
+          SizedBox(
+            width: size.height * 0.018,
           ),
           Text(
             label,
             style: TextStyle(
               color: whiteColor,
-              fontSize: 14,
+              fontSize: size.height * 0.017,
               fontWeight: FontWeight.w400,
             ),
           ),

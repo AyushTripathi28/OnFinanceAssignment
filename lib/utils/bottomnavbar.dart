@@ -5,8 +5,8 @@ import 'package:onfinance/screens/alerts_page.dart';
 import 'package:onfinance/screens/portfolio_page.dart';
 import 'package:onfinance/screens/profile_page.dart';
 import 'package:onfinance/utils/constants.dart';
-
 import '../gen/assets.gen.dart';
+import '../widgets/bottom_navitem_widget.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({Key? key}) : super(key: key);
@@ -30,6 +30,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       body: _widgetOptions.elementAt(_index),
       bottomNavigationBar: SizedBox(
+        height: 70,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _index,
@@ -45,16 +46,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           showUnselectedLabels: false,
           selectedFontSize: 0,
           unselectedFontSize: 0,
-          // selectedLabelStyle: const TextStyle(
-          //   fontWeight: FontWeight.bold,
-          //   fontSize: 12,
-          //   height: 1.6,
-          // ),
-          // unselectedLabelStyle: const TextStyle(
-          //   fontWeight: FontWeight.bold,
-          //   fontSize: 12,
-          //   height: 1.6,
-          // ),
           items: [
             BottomNavigationBarItem(
               icon: BottomNavItemWidget(
@@ -75,15 +66,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 unelectedIcon:
                     Assets.icons.bottomnavbar.exploreInactiveIcon.path,
               ),
-              //  _index == 1
-              //     ? Image.asset(
-              //         Assets.icons.bottomnavbar.exploreActiveIcon.path,
-              //         height: 24,
-              //       )
-              //     : Image.asset(
-              //         Assets.icons.bottomnavbar.exploreInactiveIcon.path,
-              //         height: 24,
-              //       ),
               label: 'Explore',
             ),
             BottomNavigationBarItem(
@@ -95,114 +77,31 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 unelectedIcon:
                     Assets.icons.bottomnavbar.alertsInactiveIcon.path,
               ),
-
-              // _index == 2
-              //     ? Image.asset(
-              //         Assets.icons.bottomnavbar.alertsActiveIcon.path,
-              //         height: 24,
-              //       )
-              //     : Image.asset(
-              //         Assets.icons.bottomnavbar.alertsInactiveIcon.path,
-              //         height: 24,
-              //       ),
               label: 'Alerts',
             ),
             BottomNavigationBarItem(
-              icon: Column(
-                children: [
-                  Image.asset(
-                    _index == 3
-                        ? Assets.icons.bottomnavbar.chartActiveIcon.path
-                        : Assets.icons.bottomnavbar.chartInactiveIcon.path,
-                    height: 24,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Portfolio",
-                    style: TextStyle(
-                        color: _index == 3 ? purpleColor : lightGreyColor),
-                  )
-                ],
+              icon: BottomNavItemWidget(
+                widgetIndex: 3,
+                index: _index,
+                label: "Portfolio",
+                selectedIcon: Assets.icons.bottomnavbar.chartActiveIcon.path,
+                unelectedIcon: Assets.icons.bottomnavbar.chartInactiveIcon.path,
               ),
               label: 'Portfolio',
             ),
             BottomNavigationBarItem(
-              icon: Image.asset(
-                Assets.images.person.path,
-                height: 38,
+              icon: Padding(
+                padding: const EdgeInsets.only(bottom: 5.0),
+                child: Image.asset(
+                  Assets.images.person.path,
+                  height: 38,
+                ),
               ),
               label: '',
             ),
           ],
         ),
       ),
-      // floatingActionButton: Center(
-      //   child: FloatingActionButton(
-      //     mini: true,
-      //     onPressed: () {},
-      //     backgroundColor: purpleColor,
-      //     child: GestureDetector(
-      //       onTap: () {
-      //         setState(() {
-      //           _index = 4;
-      //         });
-      //       },
-      //       child: Image.asset(
-      //         Assets.images.person.path,
-      //         fit: BoxFit.fill,
-      //         // height: 30,
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
-    );
-  }
-}
-
-class BottomNavItemWidget extends StatefulWidget {
-  const BottomNavItemWidget(
-      {super.key,
-      required this.index,
-      required this.label,
-      required this.selectedIcon,
-      required this.unelectedIcon,
-      required this.widgetIndex});
-  final int index;
-  final int widgetIndex;
-  final String label;
-  final String selectedIcon;
-  final String unelectedIcon;
-
-  @override
-  State<BottomNavItemWidget> createState() => _BottomNavItemWidgetState();
-}
-
-class _BottomNavItemWidgetState extends State<BottomNavItemWidget> {
-  @override
-  Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        Image.asset(
-          widget.index == widget.widgetIndex
-              ? widget.selectedIcon
-              : widget.unelectedIcon,
-          height: size.height * 0.03,
-        ),
-        SizedBox(
-          height: size.height * 0.003,
-        ),
-        Text(
-          widget.label,
-          style: TextStyle(
-              color: widget.index == widget.widgetIndex
-                  ? purpleColor
-                  : lightGreyColor),
-        )
-      ],
     );
   }
 }
