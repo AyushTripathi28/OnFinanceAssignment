@@ -26,19 +26,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    // Run code required to handle interacted messages in an async function
-    // as initState() must not be async
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: white,
       body: _widgetOptions.elementAt(_index),
       bottomNavigationBar: SizedBox(
-        //---
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _index,
@@ -54,19 +45,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
           showUnselectedLabels: false,
           selectedFontSize: 0,
           unselectedFontSize: 0,
-          selectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
-            height: 1.6,
-          ),
-          unselectedLabelStyle: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
-            height: 1.6,
-          ),
+          // selectedLabelStyle: const TextStyle(
+          //   fontWeight: FontWeight.bold,
+          //   fontSize: 12,
+          //   height: 1.6,
+          // ),
+          // unselectedLabelStyle: const TextStyle(
+          //   fontWeight: FontWeight.bold,
+          //   fontSize: 12,
+          //   height: 1.6,
+          // ),
           items: [
             BottomNavigationBarItem(
-              icon: BottomNavItemContainer(
+              icon: BottomNavItemWidget(
                 widgetIndex: 0,
                 index: _index,
                 label: "Home",
@@ -76,7 +67,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: BottomNavItemContainer(
+              icon: BottomNavItemWidget(
                 widgetIndex: 1,
                 index: _index,
                 label: "Explore",
@@ -96,7 +87,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: BottomNavItemContainer(
+              icon: BottomNavItemWidget(
                 widgetIndex: 2,
                 index: _index,
                 label: "Alerts",
@@ -117,25 +108,23 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: 'Alerts',
             ),
             BottomNavigationBarItem(
-              icon: Container(
-                child: Column(
-                  children: [
-                    Image.asset(
-                      _index == 3
-                          ? Assets.icons.bottomnavbar.chartActiveIcon.path
-                          : Assets.icons.bottomnavbar.chartInactiveIcon.path,
-                      height: 24,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Portfolio",
-                      style: TextStyle(
-                          color: _index == 3 ? purpleColor : lightGreyColor),
-                    )
-                  ],
-                ),
+              icon: Column(
+                children: [
+                  Image.asset(
+                    _index == 3
+                        ? Assets.icons.bottomnavbar.chartActiveIcon.path
+                        : Assets.icons.bottomnavbar.chartInactiveIcon.path,
+                    height: 24,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Portfolio",
+                    style: TextStyle(
+                        color: _index == 3 ? purpleColor : lightGreyColor),
+                  )
+                ],
               ),
               label: 'Portfolio',
             ),
@@ -173,8 +162,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 }
 
-class BottomNavItemContainer extends StatefulWidget {
-  const BottomNavItemContainer(
+class BottomNavItemWidget extends StatefulWidget {
+  const BottomNavItemWidget(
       {super.key,
       required this.index,
       required this.label,
@@ -188,22 +177,23 @@ class BottomNavItemContainer extends StatefulWidget {
   final String unelectedIcon;
 
   @override
-  State<BottomNavItemContainer> createState() => _BottomNavItemContainerState();
+  State<BottomNavItemWidget> createState() => _BottomNavItemWidgetState();
 }
 
-class _BottomNavItemContainerState extends State<BottomNavItemContainer> {
+class _BottomNavItemWidgetState extends State<BottomNavItemWidget> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Column(
       children: [
         Image.asset(
           widget.index == widget.widgetIndex
               ? widget.selectedIcon
               : widget.unelectedIcon,
-          height: 24,
+          height: size.height * 0.03,
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: size.height * 0.003,
         ),
         Text(
           widget.label,

@@ -1,10 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:onfinance/utils/constants.dart';
-import 'package:onfinance/widgets/company_info_table_container.dart';
+import 'package:onfinance/widgets/company_info_listitem_widget.dart';
 
 import '../gen/assets.gen.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/custom_button_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -253,10 +253,10 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(horizontal: 0.0),
                         child: Column(
                           children: [
-                            CompanyInfoTableContainer(
+                            CompanyInfoListItemWidget(
                               label: "Projected Market Impact",
                               icon: Assets.icons.marketImpactIcon.path,
-                              rightWidget: Text(
+                              valueWidget: Text(
                                 'Medium',
                                 style: TextStyle(
                                   color: yellowColor,
@@ -265,10 +265,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            CompanyInfoTableContainer(
+                            CompanyInfoListItemWidget(
                               label: "Investor Sentiment",
                               icon: Assets.icons.investorSentimentIcon.path,
-                              rightWidget: Text(
+                              valueWidget: Text(
                                 'Bullish',
                                 style: TextStyle(
                                   color: greenColor,
@@ -277,10 +277,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            CompanyInfoTableContainer(
+                            CompanyInfoListItemWidget(
                               label: "Market Movement",
                               icon: Assets.icons.marketMovementIcon.path,
-                              rightWidget: Text(
+                              valueWidget: Text(
                                 '+2.75%',
                                 style: TextStyle(
                                   color: greenColor,
@@ -289,10 +289,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            CompanyInfoTableContainer(
+                            CompanyInfoListItemWidget(
                               label: "Your Portfolio Exposure",
                               icon: Assets.icons.portfolioExposureIcon.path,
-                              rightWidget: Text(
+                              valueWidget: Text(
                                 '15%',
                                 style: TextStyle(
                                   color: lightBlueColor,
@@ -301,10 +301,10 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            CompanyInfoTableContainer(
+                            CompanyInfoListItemWidget(
                               label: "Company Sentiment",
                               icon: Assets.icons.companySentimentIcon.path,
-                              rightWidget: Text(
+                              valueWidget: Text(
                                 'Excellent',
                                 style: TextStyle(
                                   color: greenColor,
@@ -319,7 +319,7 @@ class _HomePageState extends State<HomePage> {
                       const SizedBox(
                         height: 15,
                       ),
-                      CustomButton(
+                      CustomButtonWidget(
                         onClick: () {},
                         label: "Analyze TATAPOWER",
                         icon: Image.asset(

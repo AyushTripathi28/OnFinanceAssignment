@@ -12,41 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return MaterialApp(
       title: 'OnFinance',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: const TextStyle(
-                fontFamily: 'OpenSans',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-              button: const TextStyle(color: Colors.white),
-            ),
         fontFamily: 'PlusJakartaSans',
         scaffoldBackgroundColor: backgroundColor,
         primaryTextTheme: Typography().white,
       ),
       home: const BottomNavBar(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('OnFinance')),
-      body: Container(
-        child: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
     );
   }
 }

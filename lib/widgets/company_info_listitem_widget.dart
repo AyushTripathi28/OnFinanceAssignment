@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../utils/constants.dart';
 
-class CompanyInfoTableContainer extends StatelessWidget {
-  const CompanyInfoTableContainer(
+class CompanyInfoListItemWidget extends StatelessWidget {
+  const CompanyInfoListItemWidget(
       {Key? key,
       required this.label,
       required this.icon,
-      required this.rightWidget})
+      required this.valueWidget})
       : super(key: key);
   final String label;
   final String icon;
-  final Widget rightWidget;
+  final Widget valueWidget;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,7 +43,7 @@ class CompanyInfoTableContainer extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          rightWidget,
+          valueWidget,
         ],
       ),
     );
