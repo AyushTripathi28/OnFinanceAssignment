@@ -38,7 +38,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
       // backgroundColor: white,
       body: _widgetOptions.elementAt(_index),
       bottomNavigationBar: SizedBox(
-        // height: 70,
         //---
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
@@ -51,6 +50,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           backgroundColor: darkBlueColor,
           selectedItemColor: purpleColor,
           unselectedItemColor: lightGreyColor,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          selectedFontSize: 0,
+          unselectedFontSize: 0,
           selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 12,
@@ -63,87 +66,153 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           items: [
             BottomNavigationBarItem(
-              icon: _index == 0
-                  ? Image.asset(
-                      Assets.icons.bottomnavbar.homeActiveIcon.path,
-                      height: 24,
-                    )
-                  : Image.asset(
-                      Assets.icons.bottomnavbar.homeInactiveIcon.path,
-                      height: 24,
-                    ),
+              icon: BottomNavItemContainer(
+                widgetIndex: 0,
+                index: _index,
+                label: "Home",
+                selectedIcon: Assets.icons.bottomnavbar.homeActiveIcon.path,
+                unelectedIcon: Assets.icons.bottomnavbar.homeInactiveIcon.path,
+              ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: _index == 1
-                  ? Image.asset(
-                      Assets.icons.bottomnavbar.exploreActiveIcon.path,
-                      height: 24,
-                    )
-                  : Image.asset(
-                      Assets.icons.bottomnavbar.exploreInactiveIcon.path,
-                      height: 24,
-                    ),
+              icon: BottomNavItemContainer(
+                widgetIndex: 1,
+                index: _index,
+                label: "Explore",
+                selectedIcon: Assets.icons.bottomnavbar.exploreActiveIcon.path,
+                unelectedIcon:
+                    Assets.icons.bottomnavbar.exploreInactiveIcon.path,
+              ),
+              //  _index == 1
+              //     ? Image.asset(
+              //         Assets.icons.bottomnavbar.exploreActiveIcon.path,
+              //         height: 24,
+              //       )
+              //     : Image.asset(
+              //         Assets.icons.bottomnavbar.exploreInactiveIcon.path,
+              //         height: 24,
+              //       ),
               label: 'Explore',
             ),
             BottomNavigationBarItem(
-              icon: _index == 2
-                  ? Image.asset(
-                      Assets.icons.bottomnavbar.alertsActiveIcon.path,
-                      height: 24,
-                    )
-                  : Image.asset(
-                      Assets.icons.bottomnavbar.alertsInactiveIcon.path,
-                      height: 24,
-                    ),
+              icon: BottomNavItemContainer(
+                widgetIndex: 2,
+                index: _index,
+                label: "Alerts",
+                selectedIcon: Assets.icons.bottomnavbar.alertsActiveIcon.path,
+                unelectedIcon:
+                    Assets.icons.bottomnavbar.alertsInactiveIcon.path,
+              ),
+
+              // _index == 2
+              //     ? Image.asset(
+              //         Assets.icons.bottomnavbar.alertsActiveIcon.path,
+              //         height: 24,
+              //       )
+              //     : Image.asset(
+              //         Assets.icons.bottomnavbar.alertsInactiveIcon.path,
+              //         height: 24,
+              //       ),
               label: 'Alerts',
             ),
             BottomNavigationBarItem(
-              icon: _index == 3
-                  ? Image.asset(
-                      Assets.icons.bottomnavbar.chartActiveIcon.path,
-                      height: 24,
-                    )
-                  : Image.asset(
-                      Assets.icons.bottomnavbar.chartInactiveIcon.path,
+              icon: Container(
+                child: Column(
+                  children: [
+                    Image.asset(
+                      _index == 3
+                          ? Assets.icons.bottomnavbar.chartActiveIcon.path
+                          : Assets.icons.bottomnavbar.chartInactiveIcon.path,
                       height: 24,
                     ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Portfolio",
+                      style: TextStyle(
+                          color: _index == 3 ? purpleColor : lightGreyColor),
+                    )
+                  ],
+                ),
+              ),
               label: 'Portfolio',
             ),
             BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Image.asset(
-                  Assets.images.person.path,
-                  height: 30,
-                ),
+              icon: Image.asset(
+                Assets.images.person.path,
+                height: 38,
               ),
-              label: '.',
+              label: '',
             ),
           ],
         ),
       ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 70.0),
-        child: FloatingActionButton(
-          mini: true,
-          onPressed: () {},
-          backgroundColor: purpleColor,
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                _index = 4;
-              });
-            },
-            child: Image.asset(
-              Assets.images.person.path,
-              fit: BoxFit.fill,
-              // height: 30,
-            ),
-          ),
+      // floatingActionButton: Center(
+      //   child: FloatingActionButton(
+      //     mini: true,
+      //     onPressed: () {},
+      //     backgroundColor: purpleColor,
+      //     child: GestureDetector(
+      //       onTap: () {
+      //         setState(() {
+      //           _index = 4;
+      //         });
+      //       },
+      //       child: Image.asset(
+      //         Assets.images.person.path,
+      //         fit: BoxFit.fill,
+      //         // height: 30,
+      //       ),
+      //     ),
+      //   ),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+    );
+  }
+}
+
+class BottomNavItemContainer extends StatefulWidget {
+  const BottomNavItemContainer(
+      {super.key,
+      required this.index,
+      required this.label,
+      required this.selectedIcon,
+      required this.unelectedIcon,
+      required this.widgetIndex});
+  final int index;
+  final int widgetIndex;
+  final String label;
+  final String selectedIcon;
+  final String unelectedIcon;
+
+  @override
+  State<BottomNavItemContainer> createState() => _BottomNavItemContainerState();
+}
+
+class _BottomNavItemContainerState extends State<BottomNavItemContainer> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.asset(
+          widget.index == widget.widgetIndex
+              ? widget.selectedIcon
+              : widget.unelectedIcon,
+          height: 24,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,
+        const SizedBox(
+          height: 5,
+        ),
+        Text(
+          widget.label,
+          style: TextStyle(
+              color: widget.index == widget.widgetIndex
+                  ? purpleColor
+                  : lightGreyColor),
+        )
+      ],
     );
   }
 }
